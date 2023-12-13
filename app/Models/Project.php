@@ -28,6 +28,7 @@ class Project extends Model
         'slug',
         'description',
         'project_duration',
+        'image',
         'image_original_name'
     ];
 }

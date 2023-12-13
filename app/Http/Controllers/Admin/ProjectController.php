@@ -29,6 +29,7 @@ class ProjectController extends Controller
         $method = "POST";
         $route = route('admin.projects.store');
         $project = null;
+
         return view('admin.projects.create-edit', compact("name", "method", "route", "project"));
     }
 
@@ -40,12 +41,18 @@ class ProjectController extends Controller
         $form_data = $request->all();
         $form_data['slug'] = Helper::generateSlug($form_data['name'], Project::class);
         $form_data['project_duration'] = (string) $form_data['project_duration'];
-
+        //dd($form_data);
         if(array_key_exists("image", $form_data)) {
             $form_data["image_original_name"] = $request->file("image")->getClientOriginalName();
-            $form_data["image"] = Storage::put("uploads", $form_data["image"]);
+            $newPath = Storage::put("uploads", $form_data["image"]);
+            //dd($newPath);
+            $form_data["image"] = $newPath;
         }
 
+        //dd($form_data);
+        /*$new_project = Project::create();
+        $new_project->fill($form_data);
+        $new_project->save();*/
         $new_project = Project::create($form_data);
 
         return redirect()->route('admin.projects.show', $new_project);
