@@ -28,7 +28,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">ID</th>
+                {{-- <th scope="col">ID</th> --}}
                 <th scope="col">Nome</th>
                 <th scope="col">Azioni</th>
             </tr>
@@ -36,23 +36,25 @@
         <tbody>
             @foreach ($tecnologies as $tecnology)
                 <tr>
-                    <td>{{ $tecnology->id }}</td>
-                    <td>{{ $tecnology->name }}</td>
-                    <form
-                      action="{{ route('admin.tecnologies.update', $tecnology) }}"
-                      method="POST"
-                      id="form-edit">
-                        @csrf
-                        @method('PUT')
-                        {{-- <input type="text" class="form-hidden" value="{{ $tecnology->name }}" name="name" /> --}}
-                    </form>
+                    {{-- <td>{{ $tecnology->id }}</td> --}}
+                    {{-- <td>{{ $tecnology->name }}</td> --}}
+                    <td>
+                        <form
+                          action="{{ route('admin.tecnologies.update', $tecnology) }}"
+                          method="POST"
+                          id="form-edit">
+                            @csrf
+                            @method('PUT')
+                            <input type="text" class="form-hidden border-0" value="{{ $tecnology->name }}" name="name" />
+                        </form>
+                    </td>
 
                     <td>
+                        <button onclick="submitForm()" class="btn btn-warning" id="button-addon2"><i class="fa-solid fa-pencil"></i></button>
                         @include("admin.partials.form-delete",[
                             "route" => route("admin.tecnologies.destroy", $tecnology),
                             "message" => "Sei sicuro di voler eliminare questa tecnologia?"
                         ])
-                        {{-- <button onclick="submitForm()" class="btn btn-warning" id="button-addon2"><i class="fa-solid fa-pencil"></i></button> --}}
                     </td>
                 </tr>
             @endforeach

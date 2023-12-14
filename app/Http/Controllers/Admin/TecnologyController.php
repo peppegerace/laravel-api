@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tecnology;
 use Illuminate\Support\Str;
-use App\Function\Helper;
+use App\Functions\Helper;
 
 class TecnologyController extends Controller
 {

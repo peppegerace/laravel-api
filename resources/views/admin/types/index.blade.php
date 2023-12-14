@@ -31,7 +31,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        {{-- <th scope="col">ID</th> --}}
                         <th scope="col">Nome</th>
                         <th scope="col">Azioni</th>
                     </tr>
@@ -39,7 +39,7 @@
                 <tbody>
                     @foreach ($types as $type)
                         <tr>
-                            <td>{{ $type->id }}</td>
+                            {{-- <td>{{ $type->id }}</td> --}}
                             <td>
                                 <form
                                     action="{{ route("admin.types.update", $type) }}"
@@ -49,11 +49,12 @@
                                     @csrf
                                     @method("PUT")
 
-                                    <span>{{ $type->name }}</span>
+                                    <input type="text" value="{{ $type->name }}" name="name" id="name" class="border-0">
+                                    {{-- <span>{{ $type->name }}</span> --}}
                                 </form>
                             </td>
                             <td>
-                                {{-- <button onclick="submitForm()" class="btn btn-warning" id="button-addon2"><i class="fa-solid fa-pencil"></i></button> --}}
+                                <button onclick="submitForm()" class="btn btn-warning" id="button-addon2"><i class="fa-solid fa-pencil"></i></button>
                                 @include("admin.partials.form-delete",[
                                     "route" => route("admin.types.destroy", $type),
                                     "message" => "Sei sicuro di voler eliminare questa tecnologia?"
